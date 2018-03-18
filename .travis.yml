@@ -44,7 +44,9 @@ deploy:
   provider: releases
   api_key:
     secure: FyK0x76ZI6BbpT4n5Dr7xbm2Vh0ZtMnDMSmNB47UO1NNMynWvg50ETTBDtKHL4FNVdIGdeJ4iqfkTa4OkaYqBXccPJrMKTCUfGWqw7px0sf/VJhJWH9MxNb4BokM9s2aB1GGyv+Fkp3x6Z13P03NZJK/bDPLd1ydXTsqKghkMEwJg+F67YZRA50c0oe+dXQtcKD7rvEImRp4QRJO54V9mQFuslM2g2Q+foenBrt3T0t77w4wBjl/1sNY/AhhckCx1obyg40QbWD/h2nJFnk447TKC/1YMMaXFIqtBUfrxNpFfIzJD+CBjccdKhd2I2NYgiqi2T00wLezsOvL2shwREeq8BN0qoDDKB5HSEqcNWylzFp3S0YpxlaGkoO0LngfRalMk23Rmqp/CapZNpotjnY15q1z/ktV0tCjBkSykhFDqjvaC4fXKo8L6m5snSevApCZzbyuqYzX+gNpCYON2+WYJ5LSUxOOUdfg2sDshuBGpY+akucd3iboLNV61da3vPlp1Iosne3vJ0c+p/XH2VQWtZoGKsBs3H6ql6O/tDnjyghufeLHGHlZzeOo67xWTKUjPB21Yq3ZI/GecL5YXBssqlbHpuJdbcs++L3d42OrVqdzUMzHnj/gOmf6IdRbpG69+0yx4zt7vo+yTV3n6gAFYTS0H9xwjYRncRg40CE=
-  file: ~/wykopmobilny-weekly-test.apk
+  file: wykopmobilny-weekly-test.apk
+  name: "0.6.1"
+  prerelease: true
   skip_cleanup: true
   on:
     all_branches: true
