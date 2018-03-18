@@ -20,9 +20,9 @@ cache:
   - "$HOME/.gradle/wrapper/"
   - "$HOME/.android/build-cache"
 before_install:
-- yes | sdkmanager "platforms;android-27"
 - openssl aes-256-cbc -K $encrypted_da383a5ee411_key -iv $encrypted_da383a5ee411_iv
   -in ci-release-keystore.jks.enc -out ci-release-keystore.jks -d
+- yes | sdkmanager "platforms;android-27"
 - git clone https://github.com/feelfreelinux/WykopMobilny.git
 - mv ci-release-keystore.jks WykopMobilny/ci-release-keystore.jks
 - "./travis/bumpversion.sh"
@@ -30,19 +30,18 @@ before_script:
 - echo -e "apiKey=\"$wykopApiKey\"\napiSecret=\"$wykopApiSecret\"" >> WykopMobilny/credentials.properties
 script:
 - cd WykopMobilny
-- ./gradlew assembleRelease
+- "./gradlew assembleRelease"
 - cd ..
 before_deploy:
 - cd WykopMobilny
 - mv app/build/outputs/apk/release/app-release.apk wykopmobilny-weekly-test.apk
-- cd app/build/outputs/apk/release/app-release
-- ls
-- cd ~/
+- cd ..
 env:
   global:
   - secure: pbypOw8J+PRLgSfKRWJ1UgIN3HUnXUjLecII01TIkYsrsRJ9dV37RR+iZLnxlvkC7LsDhiexgr5nBfj8oPu7VCFLHHagjApdO8SbDshYnXRpi07HKn1FsannyO82bW8DooJxZ3QxQUNtvW3vAczeYwjqbn4vrBzHBlIdpvfAablgMohnVCcggeKDU8OOWMcqBkz1RcGA6jEElClhK9fg3wDkwHYb/LWL5dirPwC9uqRoh6/dSVh4Suu6WSiKZM42HGbTEUVrBDQHrfhrY5eTTi3fupsaP1lY2IqmnLqKuGM88SFSUID9NvyltwTaNNhjLHfqxY37OUV2xDV7H6BpKLmJXl+wh13k5m4q8W+ic4YOJzAIMn3fB7D24B1LflrXZwbZlh2qpJoOwSlcpcwpj8j5yDeYC3dCIWta2XUkrdRW2Kv7AqbdHKZ8p7oEnXu7wDDPRrEfbSIfnPIHrLFD4UyENi6YAErhyZ8PPbHCfn5TEvpQMF0EYMMY39s4Kw3/u/vruv2GUXqs1CYN2mFjpV1BbuSyeRQM1W8U/LMUVfNdI0bgrmIAPmpU5/srMZuLrpW/gJAEBzleCcIELOY0pmFZngzwfLfh5tnUL4EXzVC+UQ/plgX2Dhllg8czglomB/E2GDs51jlMb4ZT//RLoEu2M8/XdQGuYzvYkNLAI9Q=
   - secure: 2437HRlw+zY0b2KgKvnlwmTsreU2TgK6bKeEZpLLrtdLl8OsCNMwIx9QbkMK/bg380fVQtm43Hfn+M8UWrmi5VWF+dg6m4d3Xauy8fUUAaVg14gRR6EtVIAVN4RYwWtgmBfPzdvXM04OstclqnovJ6mkWDuLaXVCVV6LzSvoPVlIo4rFMEafqaev2RbI5Z9j8pf8VaLP2lgPhXZ3HENR4IBTxyVMcqVAg6YaEsuBNa9pYjE1wolfqeMrffQc1ghpKKIUdKRXWCBzM60431PiFp8G7Ecq234YqU8ta5WhG8AFBlzDLnYN5rF2PRsT3yP/UgnuAXTSLtU/gkTPkQjjKRn/asqjQS+CcS7vDuIee30mtEKr0DiSkJHWGIXGMllw6++9KM8flWcEcJuVTMQnaWn85HWLnYsc3mbIueaSerKeBV5I5FGZQqHCQf9PFdz1X/yCJ7Nvh6lu4qqspjFiOIiWw9IDRjdccr0lF33aM9F7EiWymG62Js3IyaXcMt9Ve8CphqoF5dtBJvekYw2DBJ8hOorB7fymLLd+i/RUDIuqF9jhGFF50OKWeLwTfB5fgiTRrB11Ls/xMah4AgVFI9ssbEfabgJVDya1u14YxCrTHXw8qxJkrk48NK+zhqGcdetXEcestmLLCsUPnKDc5GmcK0Rgz7m31ddsOclFI/Q=
   - secure: c8nDtrrTOsbofriy8L4TgW6d202L77vbgEq54dLe7qCm/OKXVNHlTVZBu0lhoseNpMTQrj3LxIFVea4JO5mlr4XgNqAZOQU258O4cGa9QyjVlBwqEqqN2i1bibjimTuS3fDFOzSUGLnTrbRbxg1UJ3Afnv+Oc3Vpr15jT9icVt4Ykl8vILLgJjVgT5WGLoa7NUlBavDsYh5DGD4BX78cZW5wxR2+2fPZKTRVYobgFAKq7a8mEI6cjWhCXHDedcal/wHVonnnluOlwuxwUmTpuPx/WRgzJQF5D/6Q8kG7m4OjYFBqH54JRD35NSKsPo40qn9uAMrpqBfkzSNaiatujX14+TmIW3DJWErHZLUvhDK1IWPLPUiLw5sPIjOCApRldqPmiM2UYVS+WDWKpvKlBUCDU4GnglenqvWuz0Q32dzJvsENFGPq0h2VWah2Aul6lERja/5XOgQebavcPYxZrlrrpqIXtSFPZG8tm62rMNXPtVVzRATuEC/VwJZ+yx9GZcsJutQz+EWet3TQzn+HzZvw1Q92BsuS4QPas0Lfyx5xNfOy8YA4V9ovP+dcfdI7aj10DHLBahGBCxcGMdZbOsBcJwQ5IAnLbBIiKIWP5zKUSF1TGB2gL2wMbDdWCx8BY/VDHdlCJNfGBriiZIZQlJGCaxHWGV/qLRXxjGVKXBs=
+  - secure: Nox6VGprxWUm7H+AX11+cnIKVmNbr7/W1wkeMAhjD8jsd+3UrHjD1kHl/OdZVmnXsORPeRxKdkitT353zSgsL8NznXSq0/4QeBPf+gjoTwczwWYsPHLqJMlj8MLcoomq8yHkNNJLJBHk/emNvItLuXYy2nUURAy45vuyBroy248n19Bza1BfjIFbGh01G1z60WfRdaLsfDxIMlkn1H0lNA06deoeTNsMMnOfwTfEDr5GjA0QZKVKMJudt+BV9Yb2E3X19eni8Cxn/egW6zNCNFQ+JYvf2Q+Dh2Gw+HaKvJoZb2Xy39D9IAN9gjdA/78h71c/h4NhT3PuzOTtXMhVh+iFfs9C0sGP4tN1hY1TYJGUZUeEnvxa8XWqaqZomSjyT+IqM6SVNWxl4m7LrJ+hyWnQW3TwWSb7T4QaMDFARbVsp0j1hLzTB0vZSS5m2ZvcLJK82cCA3K4RdrEVoTcJ9LGKz+jdzN/v9wvTvrVcggfx6KNvtV0NNtH8sUMoKnuZQMytgsQx79+tARhJ59KpsbLMqiZQis6BjkPhzxnj/W61w6gX8p9craWjqeLqmX2MyIgt49oexh8Kh/nJTvV6hDYEU37UoUdecGB0OpFjQoyWGtimppq5YN6ZJbpRd6woVFLh5J9rRvFNsTE3HqgfqhodfhbOf0oHdPfkFpf8dpE=
 deploy:
   provider: releases
   api_key:
