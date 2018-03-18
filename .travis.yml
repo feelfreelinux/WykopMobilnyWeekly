@@ -30,8 +30,8 @@ before_script:
 - echo -e "apiKey=\"$wykopApiKey\"\napiSecret=\"$wykopApiSecret\"" >> WykopMobilny/credentials.properties
 script:
 - cd WykopMobilny
-- "./gradlew assembleRelease"
 - cd ..
+- ls
 before_deploy:
 - mv WykopMobilny/app/build/outputs/apk/release/app-release.apk wykopmobilny-weekly-test.apk
 env:
