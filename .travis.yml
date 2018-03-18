@@ -30,10 +30,14 @@ before_script:
 - echo -e "apiKey=\"$wykopApiKey\"\napiSecret=\"$wykopApiSecret\"" >> WykopMobilny/credentials.properties
 script:
 - cd WykopMobilny
+- ./gradlew assembleRelease
 - cd ..
-- ls
 before_deploy:
-- mv WykopMobilny/app/build/outputs/apk/release/app-release.apk wykopmobilny-weekly-test.apk
+- cd WykopMobilny
+- mv app/build/outputs/apk/release/app-release.apk wykopmobilny-weekly-test.apk
+- cd app/build/outputs/apk/release/app-release
+- ls
+- cd ~/
 env:
   global:
   - secure: pbypOw8J+PRLgSfKRWJ1UgIN3HUnXUjLecII01TIkYsrsRJ9dV37RR+iZLnxlvkC7LsDhiexgr5nBfj8oPu7VCFLHHagjApdO8SbDshYnXRpi07HKn1FsannyO82bW8DooJxZ3QxQUNtvW3vAczeYwjqbn4vrBzHBlIdpvfAablgMohnVCcggeKDU8OOWMcqBkz1RcGA6jEElClhK9fg3wDkwHYb/LWL5dirPwC9uqRoh6/dSVh4Suu6WSiKZM42HGbTEUVrBDQHrfhrY5eTTi3fupsaP1lY2IqmnLqKuGM88SFSUID9NvyltwTaNNhjLHfqxY37OUV2xDV7H6BpKLmJXl+wh13k5m4q8W+ic4YOJzAIMn3fB7D24B1LflrXZwbZlh2qpJoOwSlcpcwpj8j5yDeYC3dCIWta2XUkrdRW2Kv7AqbdHKZ8p7oEnXu7wDDPRrEfbSIfnPIHrLFD4UyENi6YAErhyZ8PPbHCfn5TEvpQMF0EYMMY39s4Kw3/u/vruv2GUXqs1CYN2mFjpV1BbuSyeRQM1W8U/LMUVfNdI0bgrmIAPmpU5/srMZuLrpW/gJAEBzleCcIELOY0pmFZngzwfLfh5tnUL4EXzVC+UQ/plgX2Dhllg8czglomB/E2GDs51jlMb4ZT//RLoEu2M8/XdQGuYzvYkNLAI9Q=
@@ -43,6 +47,6 @@ deploy:
   provider: releases
   api_key:
     secure: FyK0x76ZI6BbpT4n5Dr7xbm2Vh0ZtMnDMSmNB47UO1NNMynWvg50ETTBDtKHL4FNVdIGdeJ4iqfkTa4OkaYqBXccPJrMKTCUfGWqw7px0sf/VJhJWH9MxNb4BokM9s2aB1GGyv+Fkp3x6Z13P03NZJK/bDPLd1ydXTsqKghkMEwJg+F67YZRA50c0oe+dXQtcKD7rvEImRp4QRJO54V9mQFuslM2g2Q+foenBrt3T0t77w4wBjl/1sNY/AhhckCx1obyg40QbWD/h2nJFnk447TKC/1YMMaXFIqtBUfrxNpFfIzJD+CBjccdKhd2I2NYgiqi2T00wLezsOvL2shwREeq8BN0qoDDKB5HSEqcNWylzFp3S0YpxlaGkoO0LngfRalMk23Rmqp/CapZNpotjnY15q1z/ktV0tCjBkSykhFDqjvaC4fXKo8L6m5snSevApCZzbyuqYzX+gNpCYON2+WYJ5LSUxOOUdfg2sDshuBGpY+akucd3iboLNV61da3vPlp1Iosne3vJ0c+p/XH2VQWtZoGKsBs3H6ql6O/tDnjyghufeLHGHlZzeOo67xWTKUjPB21Yq3ZI/GecL5YXBssqlbHpuJdbcs++L3d42OrVqdzUMzHnj/gOmf6IdRbpG69+0yx4zt7vo+yTV3n6gAFYTS0H9xwjYRncRg40CE=
-  file: wykopmobilny-weekly-test.apk
+  file: WykopMobilny/wykopmobilny-weekly-test.apk
   on:
     repo: feelfreelinux/WykopMobilnyWeekly
